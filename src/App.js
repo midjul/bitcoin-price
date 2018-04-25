@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Observable } from 'rxjs'
+
 class App extends Component {
   componentDidMount () {
     const getPrice = symbol =>
@@ -29,16 +30,35 @@ class App extends Component {
     let res = []
     if (currencies) {
       for (const cur in currencies) {
-        console.log(cur)
         res.push(
-          <li key={cur}>
-            {currencies[cur].code} - {currencies[cur].rate}
+          <li
+            className="list-group-item d-flex justify-content-around align-items-center"
+            key={cur}
+          >
+            {currencies[cur].code}
+            <span className="badge badge-primary badge-pill">
+              {currencies[cur].rate}
+            </span>
           </li>
         )
       }
     }
 
-    return <ul>{res.length > 0 ? res : <li>'Fetching data'</li>}</ul>
+    return (
+      <div className="container-fluid">
+        <div className="col-6">
+          <ul className="list-group">
+            <li className="list-group-item d-flex justify-content-around align-items-center">
+              <h2>Currency</h2>{' '}
+              <span>
+                <h2>Price</h2>
+              </span>
+            </li>
+            {res.length > 0 ? res : <li>Fetching data</li>}
+          </ul>
+        </div>
+      </div>
+    )
   }
 }
 
