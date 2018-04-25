@@ -6,6 +6,7 @@ const htmlPlugin = new HtmlWebPackPlugin({
 })
 
 module.exports = {
+  devtool: 'cheap-module-eval-source-map',
   module: {
     rules: [
       {
